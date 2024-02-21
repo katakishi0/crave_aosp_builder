@@ -155,8 +155,8 @@ jobs:
         start_repo=$(date +%s); \
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
         end_repo=$(date +%s); \
-        echo "Sync Elapsed Time: $((end_repo-start_repo)) seconds"; \
-        
+        elapsed_time_repo=$((end_repo-start_repo)); \
+        echo "Sync Elapsed Time: $(expr $elapsed_time_repo / 60) minutes or $(expr $elapsed_time_repo % 60) seconds"; \
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
@@ -169,7 +169,8 @@ jobs:
         start_build=$(date +%s); \
         ${{ github.event.inputs.BUILD_COMMAND }}; \
         end_build=$(date +%s); \
-        echo "Build Elapsed Time: $(($end_build-$start_build)) seconds" "
+        elapsed_time=$((end_build-start_build)); \
+        echo "Sync Elapsed Time: $(expr $elapsed_time / 60) minutes or $(expr $elapsed_time % 60) seconds""
         
       # Only reach this wheter the user killed the workflow.
     - name: Execute if the job is cancelled
