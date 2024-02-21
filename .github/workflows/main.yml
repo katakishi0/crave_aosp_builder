@@ -152,7 +152,10 @@ jobs:
         fi \
     
         # Sync the repositories
+        start_repo=$(date +%s); \
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
+        end_repo=$(date +%s); \
+        echo "Sync Elapsed Time: $(($end_repo-$start_repo)) seconds"; \
         
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
@@ -162,8 +165,12 @@ jobs:
         # Build the ROM
         lunch ${{ github.event.inputs.PRODUCT_NAME }}-${{ github.event.inputs.BUILD_TYPE }} && \
         make installclean && \
-        ${{ github.event.inputs.BUILD_COMMAND }}"
 
+        start_build=$(date +%s); \
+        ${{ github.event.inputs.BUILD_COMMAND }}; \
+        end_build=$(date +%s); \
+        echo "Build Elapsed Time: $(($end_build-$start_build)) seconds" "
+        
       # Only reach this wheter the user killed the workflow.
     - name: Execute if the job is cancelled
       if: ${{ cancelled() }}
