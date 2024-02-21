@@ -155,7 +155,7 @@ jobs:
         start_repo=$(date +%s); \
         repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
         end_repo=$(date +%s); \
-        echo "Sync Elapsed Time: $(($end_repo-$start_repo)) seconds"; \
+        echo "Sync Elapsed Time: $((end_repo-start_repo)) seconds"; \
         
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
