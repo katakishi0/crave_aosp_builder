@@ -152,11 +152,9 @@ jobs:
         fi \
     
         # Sync the repositories
-        start_repo=$(date +%s); \
+        date
         repo sync -c -j$(nproc --all) --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync  && \
-        end_repo=$(date +%s); \
-        elapsed_time_repo=$((end_repo-start_repo)); \
-        echo "Sync Elapsed Time: $elapsed_time_repo seconds"; \
+        date
         # Set up build environment
         export BUILD_USERNAME=${{ github.actor }} ; \
         export BUILD_HOSTNAME=crave ; \
@@ -166,11 +164,9 @@ jobs:
         lunch ${{ github.event.inputs.PRODUCT_NAME }}-${{ github.event.inputs.BUILD_TYPE }} && \
         make installclean && \
 
-        start_build=$(date +%s); \
+        date
         ${{ github.event.inputs.BUILD_COMMAND }}; \
-        end_build=$(date +%s); \
-        elapsed_time=$((end_build-start_build)); \
-        echo "Build Elapsed Time: $elapsed_time seconds""
+        date"
         
       # Only reach this wheter the user killed the workflow.
     - name: Execute if the job is cancelled
