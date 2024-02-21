@@ -170,7 +170,7 @@ jobs:
         ${{ github.event.inputs.BUILD_COMMAND }}; \
         end_build=$(date +%s); \
         elapsed_time=$((end_build-start_build)); \
-        echo "Sync Elapsed Time: $elapsed_time seconds""
+        echo "Build Elapsed Time: $elapsed_time seconds""
         
       # Only reach this wheter the user killed the workflow.
     - name: Execute if the job is cancelled
