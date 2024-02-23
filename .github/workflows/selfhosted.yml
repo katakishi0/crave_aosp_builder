@@ -86,10 +86,10 @@ jobs:
         else
           mkdir ${HOME}/bin/
           curl -s https://raw.githubusercontent.com/accupara/crave/master/get_crave.sh | bash -s --
-          mv ${PWD}/crave ${HOME}/bin/
+          mv crave ${HOME}/bin/
           sudo ln -sf /home/${USER}/bin/crave /usr/bin/crave
-          envsubst < ${PWD}/crave.conf.sample >> ${PWD}/crave.conf
-          rm -rf ${PWD}/crave.conf.sample          
+          envsubst < crave.conf.sample >> crave.conf
+          rm -rf crave.conf.sample          
         fi
       env:
         CRAVE_USERNAME: ${{  secrets.CRAVE_USERNAME  }}
@@ -114,7 +114,7 @@ jobs:
     steps:
       # Clean the workflow before initialization.
     - name: Cleanup
-      run: rm -rf ${PWD}/*
+      run: rm -rf *
 
       # Check-out in order to access the repository's files.
     - name: Check-out to repository
@@ -176,10 +176,10 @@ jobs:
         echo 'No need to set up crave, we are already running in devspace!'
         else
           curl -s https://raw.githubusercontent.com/accupara/crave/master/get_crave.sh | bash -s --
-          mv ${PWD}/crave ${HOME}/bin/
+          mv crave ${HOME}/bin/
           sudo ln -sf /home/${USER}/bin/crave /usr/bin/crave
-          envsubst < ${PWD}/crave.conf.sample >> ${PWD}/crave.conf
-          rm -rf ${PWD}/crave.conf.sample          
+          envsubst < crave.conf.sample >> crave.conf
+          rm -rf crave.conf.sample          
         fi
       env:
         CRAVE_USERNAME: ${{  secrets.CRAVE_USERNAME  }}
