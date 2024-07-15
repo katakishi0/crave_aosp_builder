@@ -24,6 +24,7 @@ on:
           - 'PixelOS 14'
           - 'RisingOS 14'
           - 'LineageOS 18.1'
+          - 'LineageOS 18.1 ofc'
           - 'LineageOS 16.0'
           - 'CyanogenMOD 14.1'
       BUILD_DIFFERENT_ROM:
@@ -120,6 +121,11 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/Lineage18"
           export PROJECTID="85"
           export REPO_INIT="repo init -u https://github.com/accupara/los18.1.git -b lineage-18.1 --git-lfs --depth=1"
+        ;;
+        "LineageOS 18.1 ofc")
+          export PROJECTFOLDER="/crave-devspaces/Lineage18"
+          export PROJECTID="85"
+          export REPO_INIT="repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --git-lfs --depth=1"
         ;;
         "LineageOS 16.0")
           export PROJECTFOLDER="/crave-devspaces/Lineage16"
